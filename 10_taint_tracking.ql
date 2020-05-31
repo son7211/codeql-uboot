@@ -18,11 +18,11 @@ class Config extends TaintTracking::Configuration {
     }
 
     override predicate isSink(DataFlow::Node sink) {
-    
+        
          exists (FunctionCall call
-         | sink.asExpr() = call.getArgument(1) and
-         call.getTarget().getName() = "memcpy" and
-         not call.getArgument(2).isConstant())
+         | sink.asExpr() = call.getArgument(2) and
+         call.getTarget().getName() = "memcpy")
+        
 
     }
 }
